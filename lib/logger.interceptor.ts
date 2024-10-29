@@ -9,10 +9,14 @@ import {
 import { FastifyRequest } from 'fastify';
 import { Observable } from 'rxjs';
 import { LoggerService } from './logger.service';
+import { InjectLoggerModuleOptions } from './logger.decorators';
+import { LoggerModuleOptions } from './logger.interfaces';
 
 @Injectable()
 export class LoggerInterceptor implements NestInterceptor {
   constructor(
+    @InjectLoggerModuleOptions()
+    private readonly loggerModuleOptions: LoggerModuleOptions,
     @Inject(forwardRef(() => LoggerService))
     private readonly logger: LoggerService,
   ) {
@@ -24,14 +28,22 @@ export class LoggerInterceptor implements NestInterceptor {
       .switchToHttp()
       .getRequest<FastifyRequest>();
 
-    this.logger.http('Incoming request...', {
-      fn: this.intercept.name,
-      request: {
-        route: `${method} ${originalUrl.replace(/\?.*/, '')}`,
-        query,
-        ...(['POST', 'PUT', 'PATCH'].includes(method) ? { body } : {}),
-      },
-    });
+    const route = `${originalUrl.replace(/\?.*/, '')}`;
+
+    const shouldIgnoreRoute = this.loggerModuleOptions.exclude?.some((pattern) =>
+      new RegExp(`^${pattern.replace(/\//g, '\\/').replace(/\*/g, '.*')}$`).test(route),
+    );
+
+    if (!shouldIgnoreRoute) {
+      this.logger.http('Incoming request...', {
+        fn: this.intercept.name,
+        request: {
+          route: `${method} ${route}`,
+          query,
+          ...(['POST', 'PUT', 'PATCH'].includes(method) ? { body } : {}),
+        },
+      });
+    }
 
     return next.handle();
   }
