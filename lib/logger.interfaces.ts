@@ -29,10 +29,11 @@ export interface LogInfo extends LogMetadata {
 }
 
 export interface LoggerModuleOptions {
-  level: LoggerLevel;
+  level?: LoggerLevel;
   customLevelsOrder?: boolean;
   pretty?: boolean;
   redact?: string[];
+  exclude?: string[];
 }
 
 export interface LoggerConfig {

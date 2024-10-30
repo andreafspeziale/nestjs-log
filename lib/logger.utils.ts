@@ -17,7 +17,7 @@ export const createLoggerClient = (config: LoggerModuleOptions): LoggerClient =>
   }
 
   return wCreateLogger({
-    level: config.level,
+    ...(config.level ? { level: config.level } : {}),
     ...(config.customLevelsOrder ? { levels: CUSTOM_LEVELS_ORDER } : {}),
     format: wFormat.combine(...formats),
     transports: [new transports.Console()],
