@@ -6,6 +6,7 @@ import {
   ZOD_LOGGER_CUSTOM_LEVELS_ORDER,
   ZOD_LOGGER_REDACT,
   ZOD_LOGGER_EXCLUDE,
+  ZOD_LOGGER_COLORIZE,
 } from '../logger.defaults';
 
 export const loggerSchema = z.object({
@@ -20,6 +21,11 @@ export const loggerSchema = z.object({
     .transform((value) => value === 'true')
     .optional()
     .default(ZOD_LOGGER_PRETTY),
+  LOGGER_COLORIZE: z
+    .enum(['true', 'false'])
+    .transform((value) => value === 'true')
+    .optional()
+    .default(ZOD_LOGGER_COLORIZE),
   LOGGER_REDACT: z
     .preprocess((val) => (val as string).split(','), z.string().array())
     .optional()
