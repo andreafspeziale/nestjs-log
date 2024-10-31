@@ -32,12 +32,13 @@ export interface LoggerModuleOptions {
   level?: LoggerLevel;
   customLevelsOrder?: boolean;
   pretty?: boolean;
+  colorize?: boolean;
   redact?: string[];
   exclude?: string[];
 }
 
 export interface LoggerConfig {
-  logger: LoggerModuleOptions;
+  logger?: LoggerModuleOptions;
 }
 
 export interface LoggerModuleOptionsFactory {

@@ -54,7 +54,8 @@ import { LoggerModule } from '@andreafspeziale/nestjs-log';
     LoggerModule.forRoot({
       level: LoggerLevel.Error,
       customLevelsOrder: false
-      pretty: false,
+      pretty: true,
+      colorize: false,
       redact: ['password'],
       exclude: ['/swagger'] // Exclude routes from LoggerInterceptor
     }),
@@ -67,8 +68,37 @@ export class CoreModule {}
 - `level` is optional and its default is `Debug`
 - `customLevelsOrder` is optional and its default is `false` (Enables a personal levels hierarchy taste)
 - `pretty` is optional and its default is `true`
+- `colorize` is optional and its default is `true`
 - `redact` is optional and its default is []
 - `exclude` is optional and its default is []
+
+BTW, with all setted up as default you can ignore the provided schemas described in the "Environment variables management" chapter and just:
+
+```ts
+export const loggerModuleOptions = {
+  level: LoggerLevel.Debug,
+  customLevelsOrder: false,
+  pretty: true,
+  colorize: true,
+  redact: [],
+  exclude: [],
+};
+```
+
+`src/core/core.module.ts`
+
+```ts
+import { Module } from '@nestjs/common';
+import { LoggerModule } from '@andreafspeziale/nestjs-log';
+
+@Module({
+  imports: [
+    LoggerModule.forRoot({}),
+  ],
+  ...
+})
+export class CoreModule {}
+```
 
 #### LoggerModule.forRootAsync(options)
 
