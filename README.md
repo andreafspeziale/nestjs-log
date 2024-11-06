@@ -72,7 +72,11 @@ export class CoreModule {}
 - `redact` is optional and its default is []
 - `exclude` is optional and its default is []
 
-BTW, with all setted up as default you can ignore the provided schemas described in the "Environment variables management" chapter and just:
+<p align="center">
+  <img src="assets/sample-logs.png" alt="Swagger example" width="800">
+</p>
+
+BTW, using by using defaults you can ignore the provided schemas described in the "Environment variables management" chapter and just:
 
 ```ts
 export const loggerModuleOptions = {
@@ -126,6 +130,7 @@ export class CoreModule {}
 ```
 
 ### Decorators
+
 > use the client and create your own service
 
 #### InjectLoggerOptions() and InjectLogger()
@@ -134,7 +139,7 @@ export class CoreModule {}
 
 ```ts
 import { Injectable } from '@nestjs/common';
-import { 
+import {
   InjectLoggerOptions,
   InjectLogger,
   LoggerClient,
@@ -155,6 +160,7 @@ export class SamplesService {
 ```
 
 ### Service
+
 > out of the box service with a set of features
 
 #### LoggerService
@@ -193,7 +199,7 @@ You'll see:
   params: {
     ....,
   },
-  reqId: '557a8e30-62e6-11ef-b821-ebc5f38e9e30', 
+  reqId: '557a8e30-62e6-11ef-b821-ebc5f38e9e30',
   level: 'debug',
   message: 'Doing something...',
   timestamp: '2024-08-25T13:31:28.843Z'
@@ -214,7 +220,7 @@ async function bootstrap() {
 
   // I usually use Fastify but feel free to use Express importing rTracerExpressMiddleware instead of rTracerFastifyMiddleware
   app.use(rTracerFastifyMiddleware());
-  
+
   ....
 
   await app.listen....;
