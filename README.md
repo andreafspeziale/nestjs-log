@@ -54,8 +54,10 @@ import { LoggerModule } from '@andreafspeziale/nestjs-log';
     LoggerModule.forRoot({
       level: LoggerLevel.Error,
       customLevelsOrder: false
-      pretty: false,
+      pretty: true,
+      colorize: false,
       redact: ['password'],
+      exclude: ['/swagger'] // Exclude routes from LoggerInterceptor
     }),
   ],
   ...
@@ -63,10 +65,44 @@ import { LoggerModule } from '@andreafspeziale/nestjs-log';
 export class CoreModule {}
 ```
 
-- `level` is not optional and its default is `Debug`
+- `level` is optional and its default is `Debug`
 - `customLevelsOrder` is optional and its default is `false` (Enables a personal levels hierarchy taste)
 - `pretty` is optional and its default is `true`
-- `redact` is optional and has no default
+- `colorize` is optional and its default is `true`
+- `redact` is optional and its default is []
+- `exclude` is optional and its default is []
+
+<p align="center">
+  <img src="assets/sample-logs.png" alt="Swagger example" width="800">
+</p>
+
+BTW, using by using defaults you can ignore the provided schemas described in the "Environment variables management" chapter and just:
+
+```ts
+export const loggerModuleOptions = {
+  level: LoggerLevel.Debug,
+  customLevelsOrder: false,
+  pretty: true,
+  colorize: true,
+  redact: [],
+  exclude: [],
+};
+```
+
+`src/core/core.module.ts`
+
+```ts
+import { Module } from '@nestjs/common';
+import { LoggerModule } from '@andreafspeziale/nestjs-log';
+
+@Module({
+  imports: [
+    LoggerModule.forRoot({}),
+  ],
+  ...
+})
+export class CoreModule {}
+```
 
 #### LoggerModule.forRootAsync(options)
 
@@ -94,6 +130,7 @@ export class CoreModule {}
 ```
 
 ### Decorators
+
 > use the client and create your own service
 
 #### InjectLoggerOptions() and InjectLogger()
@@ -102,7 +139,7 @@ export class CoreModule {}
 
 ```ts
 import { Injectable } from '@nestjs/common';
-import { 
+import {
   InjectLoggerOptions,
   InjectLogger,
   LoggerClient,
@@ -123,6 +160,7 @@ export class SamplesService {
 ```
 
 ### Service
+
 > out of the box service with a set of features
 
 #### LoggerService
@@ -161,7 +199,7 @@ You'll see:
   params: {
     ....,
   },
-  reqId: '557a8e30-62e6-11ef-b821-ebc5f38e9e30', 
+  reqId: '557a8e30-62e6-11ef-b821-ebc5f38e9e30',
   level: 'debug',
   message: 'Doing something...',
   timestamp: '2024-08-25T13:31:28.843Z'
@@ -182,7 +220,7 @@ async function bootstrap() {
 
   // I usually use Fastify but feel free to use Express importing rTracerExpressMiddleware instead of rTracerFastifyMiddleware
   app.use(rTracerFastifyMiddleware());
-  
+
   ....
 
   await app.listen....;
@@ -259,6 +297,28 @@ export class SearchController {
     return this.samplesService.sampleMethod(payload);
   }
 }
+```
+
+or
+
+`src/core/core.module.ts`
+
+```ts
+import { LoggerInterceptor, LoggerModule } from '@andreafspeziale/nestjs-log';
+import { Module } from '@nestjs/common';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+
+@Module({
+  imports: [
+    ....,
+    LoggerModule.... // Use the "exclude" module option to exclude routes from LoggerInterceptor
+  ],
+  providers: [{
+    provide: APP_INTERCEPTOR,
+    useClass: LoggerInterceptor,
+  }],
+})
+export class CoreModule {}
 ```
 
 ### Environment variables management
