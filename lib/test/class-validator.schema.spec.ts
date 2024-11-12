@@ -2,7 +2,7 @@ import { plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
 import { LoggerSchema } from '../class-validator';
 
-describe('OSLocalSchema (spec)', () => {
+describe('class-validator: LoggerSchema (spec)', () => {
   [
     {
       description: 'Should fail if LOGGER_CUSTOM_LEVELS cannot be parsed',
