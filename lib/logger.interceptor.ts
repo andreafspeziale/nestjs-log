@@ -26,7 +26,7 @@ export class LoggerInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
     const { method, originalUrl, query, body } = context
       .switchToHttp()
-      .getRequest<FastifyRequest>();
+      .getRequest<FastifyRequest<{ Querystring: Record<string, string> }>>();
 
     const route = `${originalUrl.replace(/\?.*/, '')}`;
 
@@ -39,7 +39,7 @@ export class LoggerInterceptor implements NestInterceptor {
         fn: this.intercept.name,
         request: {
           route: `${method} ${route}`,
-          query,
+          query: { ...query },
           ...(['POST', 'PUT', 'PATCH'].includes(method) ? { body } : {}),
         },
       });

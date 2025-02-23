@@ -19,7 +19,7 @@ export class LoggerMiddleware implements NestMiddleware {
       fn: this.use.name,
       request: {
         route: `${method} ${baseUrl || url.replace(/\?.*/, '')}`,
-        query,
+        query: { ...query },
         ...(['POST', 'PUT', 'PATCH'].includes(method) ? { body } : {}),
       },
     });
