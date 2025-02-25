@@ -1,12 +1,12 @@
 import { format as wFormat, createLogger as wCreateLogger, transports } from 'winston';
 import { fastifyMiddleware, expressMiddleware } from 'cls-rtracer';
+import { LoggerModuleOptions, LoggerLevel, LoggerClient } from './logger.interfaces';
+import { loggerModuleOptions } from './logger.defaults';
 import {
   CUSTOM_LEVELS_ORDER,
   LOGGER_MODULE_OPTIONS_TOKEN,
   LOGGER_CLIENT_TOKEN,
 } from './logger.constants';
-import { LoggerModuleOptions, LoggerLevel, LoggerClient } from './logger.interfaces';
-import { loggerModuleOptions } from './logger.defaults';
 
 export const getLoggerModuleOptionsToken = (): string => LOGGER_MODULE_OPTIONS_TOKEN;
 export const getLoggerClientToken = (): string => LOGGER_CLIENT_TOKEN;
