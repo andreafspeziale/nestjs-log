@@ -17,27 +17,33 @@ export class LoggerSchema implements ILoggerSchema {
 
   @IsOptional()
   @IsBoolean()
-  @Transform(({ value }) => (value === 'true' ? true : value === 'false' ? false : value))
+  @Transform(({ value }: { value: string }) =>
+    value === 'true' ? true : value === 'false' ? false : value,
+  )
   LOGGER_CUSTOM_LEVELS_ORDER?: boolean = CLASS_VALIDATOR_LOGGER_CUSTOM_LEVELS_ORDER;
 
   @IsOptional()
   @IsBoolean()
-  @Transform(({ value }) => (value === 'true' ? true : value === 'false' ? false : value))
+  @Transform(({ value }: { value: string }) =>
+    value === 'true' ? true : value === 'false' ? false : value,
+  )
   LOGGER_PRETTY?: boolean = CLASS_VALIDATOR_LOGGER_PRETTY;
 
   @IsOptional()
   @IsBoolean()
-  @Transform(({ value }) => (value === 'true' ? true : value === 'false' ? false : value))
+  @Transform(({ value }: { value: string }) =>
+    value === 'true' ? true : value === 'false' ? false : value,
+  )
   LOGGER_COLORIZE?: boolean = CLASS_VALIDATOR_LOGGER_COLORIZE;
 
   @IsOptional()
-  @Transform(({ value }) => (Array.isArray(value) ? value : value.split(',')), {
+  @Transform(({ value }: { value: string }) => (Array.isArray(value) ? value : value.split(',')), {
     toClassOnly: true,
   })
   LOGGER_REDACT?: string[] = CLASS_VALIDATOR_LOGGER_REDACT;
 
   @IsOptional()
-  @Transform(({ value }) => (Array.isArray(value) ? value : value.split(',')), {
+  @Transform(({ value }: { value: string }) => (Array.isArray(value) ? value : value.split(',')), {
     toClassOnly: true,
   })
   LOGGER_EXCLUDE?: string[] = CLASS_VALIDATOR_LOGGER_EXCLUDE;

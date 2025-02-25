@@ -24,7 +24,7 @@ describe('class-validator: LoggerSchema (spec)', () => {
     },
   ].forEach(({ description, scenarios }) =>
     scenarios.forEach(({ env, expected }) =>
-      it(`${description}`, async () => {
+      it(`${description}`, () => {
         const envSchemaInstance = plainToInstance(LoggerSchema, env);
 
         const errors = validateSync(envSchemaInstance);
