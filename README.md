@@ -76,7 +76,7 @@ export class CoreModule {}
   <img src="assets/sample-logs.png" alt="Swagger example" width="800">
 </p>
 
-BTW, using by using defaults you can ignore the provided schemas described in the "Environment variables management" chapter and just:
+BTW, by using defaults you can ignore the provided schemas described in the "Environment variables management" chapter and just:
 
 ```ts
 export const loggerModuleOptions = {

@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.0 (2025-02-25)
+## [1.2.0](https://github.com/andreafspeziale/nestjs-log/compare/1.1.0...1.2.0) (2025-02-25)
 
 * chore: deps alignment ([89d4437](https://github.com/andreafspeziale/nestjs-log/commit/89d4437))
 * chore: eslint ([c26257c](https://github.com/andreafspeziale/nestjs-log/commit/c26257c))
