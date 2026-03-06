@@ -95,7 +95,7 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-unused-imports": "^4.1.4",
-    "fastify": "^4.29.0",
+    "fastify": "^5.8.1",
     "globals": "^15.15.0",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
@@ -129,7 +129,11 @@
   "packageManager": "pnpm@10.30.3",
   "pnpm": {
     "overrides": {
-      "conventional-changelog-conventionalcommits": "8.0.0"
+      "conventional-changelog-conventionalcommits": "8.0.0",
+      "basic-ftp": ">=5.2.0",
+      "minimatch": ">=10.2.3",
+      "@babel/helpers": ">=7.26.10",
+      "fastify": ">=5.8.1"
     }
   }
 }
