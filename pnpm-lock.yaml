@@ -17,7 +17,7 @@ importers:
     dependencies:
       cls-rtracer:
         specifier: ^2.6.3
-        version: 2.6.3
+        version: 2.6.4
       winston:
         specifier: ^3.17.0
         version: 3.19.0
@@ -1410,8 +1410,8 @@ packages:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
 
-  cls-rtracer@2.6.3:
-    resolution: {integrity: sha512-O7M/m2M/KfT9v+q7ka9nmsadS67ce9P8+1Zgm6VFamK56oFd1iCoJ9m8hYKUQpK4+RofyaexxHJlOBkxqCDs3Q==}
+  cls-rtracer@2.6.4:
+    resolution: {integrity: sha512-ZvMGg96OWmujBjYdH56TCr3PvimGDmVDTt8jJJsyLbvuvk/0dRlaJT2ibotn/mIYD0lZT5/xMrweeroUNvAhnQ==}
     engines: {node: '>=12.17.0 <13.0.0 || >=13.14.0 <14.0.0 || >=14.0.0'}
 
   co@4.6.0:
@@ -5495,7 +5495,7 @@ snapshots:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
 
-  cls-rtracer@2.6.3:
+  cls-rtracer@2.6.4:
     dependencies:
       uuid: 9.0.1
 
