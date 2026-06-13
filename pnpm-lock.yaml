@@ -102,7 +102,7 @@ importers:
         version: 29.7.0(@types/node@24.10.1)
       joi:
         specifier: ^17.13.3
-        version: 17.13.3
+        version: 17.13.4
       lint-staged:
         specifier: ^15.4.3
         version: 15.5.2
@@ -2628,8 +2628,8 @@ packages:
     resolution: {integrity: sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==}
     hasBin: true
 
-  joi@17.13.3:
-    resolution: {integrity: sha512-otDA4ldcIx+ZXsKHWmp0YizCweVRZG96J10b0FevjfuncLO1oX59THoAmHkNubYJ+9gWsYsp5k8v4ib6oDv1fA==}
+  joi@17.13.4:
+    resolution: {integrity: sha512-1RuuER6kmt8K8I3nIWvPZKi5RQCb568ZPyY4Pwjlua+yo+63ZTmIwxLZH0heBmiKN4uxjvCiarDrjaeH84xicQ==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -7051,7 +7051,7 @@ snapshots:
 
   jiti@2.6.1: {}
 
-  joi@17.13.3:
+  joi@17.13.4:
     dependencies:
       '@hapi/hoek': 9.3.0
       '@hapi/topo': 5.1.0
